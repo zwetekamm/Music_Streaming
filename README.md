@@ -7,12 +7,18 @@ Although it is not entirely my own, I've posted it because music streaming is an
 Languages: HTML, CSS, JavaScript, PHP, MySQL
 Services: Apache and MySQL
 
-Features include:
---Login and Register
+---
 
-Login and Register
+Features include:
+
+-Login and Register
+
 -Database for Users, Artists, and Albums
+
 -Playback Control (Volume, Pause, Skip, Repeat, Shuffle)
+
 -Customizable Playlists
+
+---
 
 -Music credited to Bensound; Icons credited to Icons8
