@@ -8,7 +8,9 @@ Languages: HTML, CSS, JavaScript, PHP, MySQL
 Services: Apache and MySQL
 
 Features include:
--Login and Register
+--Login and Register
+
+Login and Register
 -Database for Users, Artists, and Albums
 -Playback Control (Volume, Pause, Skip, Repeat, Shuffle)
 -Customizable Playlists
