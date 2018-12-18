@@ -1,0 +1,405 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+
+/* Default fonts used */
+* {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #fff;
+	letter-spacing: 1px;
+}
+
+/* Main container */
+body {
+	background-color: #181818;
+    font-size: 14px;
+    min-width: 720px;
+}
+
+/* Element that contains the Now Playing Bar */
+#nowPlayingBarContainer {
+	width: 100%;
+    background-color: #282828;
+    bottom: 0;
+    position: fixed;
+    min-width: 620px;
+}
+
+/* Now Playing Bar; flex container */
+#nowPlayingBar {
+	display: flex;
+    height: 90px;
+    padding: 16px;
+    box-sizing: border-box;	/* Restrict size within container */
+}
+
+/* Left and right sections of the Now Playing Bar */
+#nowPlayingLeft,
+#nowPlayingRight {
+	width: 30%;
+    min-width: 100px;
+}
+
+/* Adjustment of Right for Volume Bar */
+#nowPlayingRight {
+	position: relative;
+	margin-top: 16px;
+}
+
+/* Center section of the Now Playing bar */
+#nowPlayingCenter {
+	width: 40%;
+	max-width: 700px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#nowPlayingBar .content {
+	width: 100%;
+	height: 57px;
+}
+
+.playerControls .buttons {
+	margin: 0 auto;
+	display: table;
+}
+
+/* All buttons for the Now Playing Bar */
+.controlButton {
+	background-color: transparent;
+	border: none;
+	vertical-align: middle;
+}
+
+/* Each individual button for the Now Playing Bar */
+.controlButton img {
+	width: 20px;
+	height: 20px;
+}
+
+/* Specific sizing to play and pause buttons*/
+.controlButton.play img,
+.controlButton.pause img {
+	width: 32px;
+    height: 32px;
+}
+
+.controlButton:hover {
+	cursor: pointer;
+}
+
+/* Timeline across the Now Playing Bar */
+.progressTime {
+	color: #a0a0a0;
+    font-size: 11px;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* Define the flex container for playback parent */
+.playbackBar {
+	display: flex;
+}
+
+.progressBar {
+	width: 100%;
+    height: 12px;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+/* Width remaining in progress bar */
+.progressBarBg {
+	background-color: #404040;
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+}
+
+/* Width expanded in progress bar (actual progress) */
+.progress {
+	background-color: #a0a0a0;
+    height: 4px;
+    width: 0;
+    border-radius: 2px;
+}
+
+/* Margin size specific to playback bar */
+.playbackBar .progressBar {
+	margin-top: 3px;
+}
+
+/* Format of album artwork */
+#nowPlayingLeft .albumArtwork {
+	height: 100%;
+	max-width: 57px;
+	margin-right: 15px;
+	float: left;
+	background-size: cover;
+}
+
+#nowPlayingLeft .trackInfo {
+	display: table;
+}
+
+/* Track name */
+#nowPlayingLeft .trackInfo .trackName {
+	margin: 6px 0;
+	display: inline-block;
+	width: 100%;
+}
+
+/* Artist name */
+#nowPlayingLeft .trackInfo .artistName span {
+	font-size: 12px;
+	color: #a0a0a0;
+}
+
+/* Entire Volume bar control */
+.volumeBar {
+	width: 180px;
+    position: absolute;
+    right: 0;
+}
+
+/* Progress bar width */
+.volumeBar .progressBar {
+	width: 125px;
+}
+
+#topContainer {
+	min-height: 100%;
+	width: 100%;
+}
+
+/* Navigation Bar; fixed to top and left */
+#navBarContainer {
+	background-color: #000;
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navBar {
+	padding: 25px;
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column; /* If using Internet Explorer */
+}
+
+.logo {
+	margin-bottom: 15px;
+}
+
+/* Logo image size adjustment */
+.logo img {
+	width: 32px;
+}
+
+/* Search group */
+.navBar .group {
+	border-top: 1px solid #a0a0a0;
+    padding: 10px 0;
+}
+
+.navItem {
+	padding: 10px 0;
+	font-size: 14px;
+	font-weight: 700;
+	display: block;
+	letter-spacing: 1px;
+	position: relative;
+}
+
+/* Navigation item text */
+.navItemLink {
+	color: #a0a0a0;
+    text-decoration: none;
+}
+
+.navItemLink:hover {
+	color: #fff;
+}
+
+/* Navigation items' icons */
+.navItemLink .icon {
+	position: absolute;
+	right: 0;
+	top: 6px;
+	width: 25px;
+}
+
+/* Container for main content */
+#mainViewContainer {
+	margin-left: 220px;			/* Aligns Nav bar */
+    padding-bottom: 90px;		/* Aligns Now Playing bar */
+    width: calc(100% - 220px);
+}
+
+#mainContent {
+    padding: 0 20px;
+}
+
+/* Main content header */
+.pageHeadingBig {
+	padding: 20px;
+	text-align: center;
+}
+
+/* Main content items format */
+.gridViewItem {
+	display: inline-block;
+	margin-right: 20px;
+	width: 29%;
+	max-width: 200px;
+	min-width: 150px;
+	margin-bottom: 20px;
+}
+
+/* Artwork image adjustments within each item */
+.gridViewItem img {
+	width: 100%;
+}
+
+/* Text below album artwork */
+.gridViewInfo {
+	font-weight: 300;
+    text-align: center;
+    padding: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.gridViewItem a {
+	text-decoration: none;
+}
+
+/* Content info in Main container after pathway selected within main container */
+.entityInfo {
+    padding: 40px 0 10px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Album artwork */
+.entityInfo .leftSection {
+	width: 30%;
+	float: left;
+	max-width: 250px;
+}
+
+.entityInfo .leftSection img {
+	width: 100%;
+}
+
+/* Album info */
+.entityInfo .rightSection {
+	width: 70%;
+	float: left;
+	padding: 5px 10px 5px 40px;
+	box-sizing: border-box;
+}
+
+/* Album title */
+.entityInfo .rightSection h2 {
+	margin-top: 0px;
+}
+
+/* Album artist name */
+.entityInfo .rightSection p {
+	color: #939393;
+	font-weight: 200;
+}
+
+/* Tracklist container for track info displayed beneath Album page */
+.tracklist {
+	padding: 0;
+}
+
+.tracklistRow {
+	height: 40px;
+	padding: 15px 10px;
+	list-style: none;
+}
+
+/* Text display */
+.tracklistRow span {
+	color: #939393;
+	font-weight: 200;
+}
+
+/* Background hover */
+.tracklistRow:hover {
+	background-color: #282828;
+}
+
+.tracklistRow .trackCount {
+	width: 8%;
+	float: left;
+}
+
+/* Play button icon */
+.tracklistRow .trackCount img {
+	width: 20px;
+	visibility: hidden;
+	position: absolute;
+	cursor: pointer;
+}
+
+/* Show Play button while hovering */
+.tracklistRow:hover .trackCount img {
+	visibility: visible;
+}
+
+.tracklistRow .trackCount span {
+	visibility: visible;
+}
+
+/* Hide track number while hovering */
+.tracklistRow:hover .trackCount span {
+	visibility: hidden;
+}
+
+/* Song title and Artist name */
+.tracklistRow .trackInfo {
+	width: 75%;
+	float: left;
+}
+
+.tracklistRow .trackInfo span {
+	display: block;
+}
+
+.tracklistRow .trackInfo .trackName {
+	color: #fff;
+	margin-bottom: 7px;
+}
+
+/* Options for more */
+.tracklistRow .trackOptions {
+	width: 5%;
+	float: left;
+	text-align: right;
+}
+
+.tracklistRow .trackOptions img {
+	width: 15px;
+	visibility: hidden;
+}
+
+/* Show options while hovering */
+.tracklistRow:hover .trackOptions img {
+	visibility: visible;
+}
+
+.tracklistRow .trackDuration {
+	width: 12%;
+	float: left;
+	text-align: right;
+}
