@@ -1,40 +1,38 @@
-<?php 
+<?php
 	include("includes/includedFiles.php");
+	// if artist id is set
 	if(isset($_GET['id'])) {
-		$albumId = $_GET['id'];
+		$artistId = $_GET['id'];
 	} else {
 		header("Location: index.php");
 	}
-	/* Assigns new Album object to $album variable */
-	$album = new Album($con, $albumId);
-	/* Assigns new Artist object to $artist variable */
-	$artist = $album->getArtist();
+
+	$artist = new Artist($con, $artistId);
 ?>
 
-<div class="entityInfo">
-	
-	<div class="leftSection">
-		<img src="<?php echo $album->getArtworkPath(); ?>">
-	</div>
+<div class="entityInfo borderBottom">
 
-	<!--Displays album title, artist name, and number of songs-->
-	<div class="rightSection">
+	<div class="centerSection">
 
-		<h2><?php echo $album->getTitle(); ?></h2>
-		<p>By <?php echo $artist->getName(); ?></p>
-		<p><?php echo $album->getNumberOfSongs(); ?> songs</p>
-	
+		<div class="artistInfo">
+			<h1 class="artitstName"><?php echo $artist->getName(); ?></h1>
+
+			<div class="headerButtons">
+				<button class="button green" onclick="playFirstSong()">PLAY</button>
+			</div>
+			
+		</div>
+		
 	</div>
 
 </div>
 
-<div class="tracklistContainer">	
-	<!--List of album songs with info and play button-->
-	<!--List is unordered to allow formatting freedom when adding our own numbers-->
+<div class="tracklistContainer borderBottom">
+	<h2>SONGS</h2>
 	<ul class="tracklist">
 
 		<?php
-		$songIdArray = $album->getSongIds();
+		$songIdArray = $artist->getSongIds();
 
 		$i = 1;
 		/* Loop each song ID in the album */
@@ -78,8 +76,29 @@
 
 </div>
 
+<div class="gridViewContainer">
+	<h2>ALBUMS</h2>
+	<?php
+		/* Query search for all albums from an artist */
+		$albumQuery = mysqli_query($con, "SELECT * FROM albums WHERE artist='$artistId'");
+		/* Converts $albumQuery results to an array and loop each row result */
+		while($row = mysqli_fetch_array($albumQuery)) {
+			/* Print album artwork using strings and concatenation */
+			echo "<div class='gridViewItem'>
+
+					<span role='link' tabindex='0' onclick='openPage(\"album.php?id=". $row['id'] ."\")'>
+						<img src='". $row['artworkPath'] ."'>
+
+						<div class='gridViewInfo'>". $row['title'] ."</div>
+
+					</span>
+
+				</div>";
+		}
+	?>
+</div>
+
 <nav class="optionsMenu">
 	<input type="hidden" class="songId">
 	<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
 </nav>
-

@@ -162,7 +162,7 @@
 		}
 		pauseSong();
 
-		// Display song title
+		// Display song title (bottom left corner)
 		$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 			var track = JSON.parse(data);
 			$(".trackName span").text(track.title);
@@ -170,22 +170,25 @@
 			// Display artist name (nested because artist ID is retrieved from song data)
 			$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
 				var artist = JSON.parse(data);
-				$(".artistName span").text(artist.name);
+				$(".trackInfo .artistName span").text(artist.name);
+				// click attribute to artist
+				$(".trackInfo .artistName span").attr("onclick", "openPage('artist.php?id="+ artist.id +"')");
 			});
 
 			// Display album image (also nested)
 			$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
 				var album = JSON.parse(data);
-				$(".albumLink img").attr("src", album.artworkPath);
+				$(".content .albumLink img").attr("src", album.artworkPath);
+				// click attribute to album
+				$(".content .albumLink img").attr("onclick", "openPage('album.php?id="+ album.id +"')");
+				$(".trackInfo .trackName span").attr("onclick", "openPage('album.php?id="+ album.id +"')");
 			});
-
 			audioElement.setTrack(track);
-			playSong();
-		});
 
-		if (play) {
-			audioElement.play();
-		}
+			if (play) {
+				playSong();
+			}
+		});
 	}
 
 	function playSong() {
@@ -216,18 +219,18 @@
 			<div class="content">
 				<!--Album artwork-->
 				<span class="albumLink">
-					<img src="" class="albumArtwork">
+					<img role="link" tabindex="0" src="" class="albumArtwork">
 				</span>
 
 				<!--Track details: title and artist-->
 				<div class="trackInfo">
 
 					<span class="trackName">
-						<span></span>
+						<span role="link" tabindex="0"></span>
 					</span>
 
 					<span class="artistName">
-						<span></span>
+						<span role="link" tabindex="0"></span>
 					</span>
 				
 				</div>
