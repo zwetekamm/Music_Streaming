@@ -13,11 +13,13 @@ Features include:
 
 -Login and Register (with validation)
 
--Database for Users, Artists, and Albums
+-Database for Users, Artists, Albums, and Playlists
 
 -Playback Control (Volume, Pause, Skip, Repeat, Shuffle)
 
 -Customizable Playlists
+
+-Search Input
 
 -User settings (update email and password)
 
